@@ -1,3 +1,8 @@
+$('#test').html("Test");
+localStorage.content = $('#test').html();
+$('#test').html(localStorage.content);
+console.log(localStorage)
+
 $(document).ready(function () {
     //date
     date = moment().format("dddd,MMM Do");
@@ -12,6 +17,9 @@ $(document).ready(function () {
     //set date
     currentDay.text(date);
 
+
+
+
     for (let i = 9; i < (17); i++) {
         //gets div with time
         var div = $("div").find(`[data-time="${i}"]`);
@@ -25,7 +33,7 @@ $(document).ready(function () {
         //check if text is saving
         //console.log(savedText);
 
-        var btn = $(`button#${i}-btn`);
+        var btn = $(`button#${i}-saveBtn`);
 
         //btn click
         btn.click(function () {
@@ -38,20 +46,20 @@ $(document).ready(function () {
             //saves the text from textarea to local storage
             localStorage.setItem(i, textArea.val());
         })
-        
+
         //set classes based on past present & future
         if (i < hour) {
-            div.addClass("past");
+            $(".row").addClass("past")
             console.log("past");
         }
 
         else if (i = hour) {
-            div.addClass("present");
+            $(".row").addClass("present")
             console.log("present");
         }
 
         else {
-            div.addClass("future");
+            $(".row").addClass("future")
             console.log("future");
         }
     }
